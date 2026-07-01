@@ -1,0 +1,19 @@
+# Dépendances
+node_modules
+
+# Build
+.next
+dist
+*.tsbuildinfo
+
+# Secrets & env (jamais versionnés)
+.env
+.env.local
+.env.*.local
+
+# Clone tiers de LibreChat (régénérable via infra/librechat/setup.sh)
+/apps/librechat/
+
+# Divers
+*.log
+.DS_Store

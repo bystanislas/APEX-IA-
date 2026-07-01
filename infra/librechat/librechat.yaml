@@ -1,0 +1,61 @@
+version: 1.3.13
+
+cache: true
+
+interface:
+  customWelcome: "Bienvenue sur Apex IA — l'intelligence au sommet."
+  modelSelect: true
+  parameters: true
+  presets: true
+
+# Les 5 modes du cahier des charges (Fast/Balanced/Deep/Expert/Max) traduits en
+# modelSpecs natifs LibreChat : chaque mode = un modèle Anthropic + un budget de
+# raisonnement (extended thinking). C'est la même politique que packages/ai
+# (voir docs/MODEL_ROUTING.md), réexprimée dans le format que LibreChat attend
+# nativement plutôt que via un appel API custom.
+modelSpecs:
+  addedEndpoints: ["anthropic"]
+  list:
+    - name: "apex-fast"
+      label: "Fast"
+      description: "Réponses immédiates — Haiku, sans raisonnement étendu."
+      default: true
+      preset:
+        endpoint: "anthropic"
+        model: "claude-haiku-4-5-20251001"
+        thinking: false
+
+    - name: "apex-balanced"
+      label: "Balanced"
+      description: "Équilibre qualité/vitesse — Sonnet, raisonnement standard."
+      preset:
+        endpoint: "anthropic"
+        model: "claude-sonnet-4-6"
+        thinking: false
+
+    - name: "apex-deep"
+      label: "Deep"
+      description: "Analyse approfondie — Opus, raisonnement étendu (4k tokens)."
+      preset:
+        endpoint: "anthropic"
+        model: "claude-opus-4-8"
+        thinking: true
+        thinkingBudget: 4096
+
+    - name: "apex-expert"
+      label: "Expert"
+      description: "Raisonnement maximal — Opus, budget de réflexion élevé (12k tokens)."
+      preset:
+        endpoint: "anthropic"
+        model: "claude-opus-4-8"
+        thinking: true
+        thinkingBudget: 12000
+
+    - name: "apex-max"
+      label: "Max"
+      description: "Puissance maximale — Fable, budget de réflexion maximal (24k tokens)."
+      preset:
+        endpoint: "anthropic"
+        model: "claude-fable-5"
+        thinking: true
+        thinkingBudget: 24000
