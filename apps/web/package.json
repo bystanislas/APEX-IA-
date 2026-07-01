@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apex-ia/ai": "workspace:*",
+    "@apex-ia/auth": "workspace:*",
     "@apex-ia/documents": "workspace:*",
     "@prisma/client": "^5.20.0",
     "bcryptjs": "^2.4.3",

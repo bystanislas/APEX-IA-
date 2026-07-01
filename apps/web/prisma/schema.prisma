@@ -10,8 +10,14 @@ datasource db {
 model User {
   id            String         @id @default(cuid())
   email         String         @unique
-  passwordHash  String
+  /// Null pour les comptes liés via un provider externe (ex: LibreChat) — ils
+  /// n'ont pas de mot de passe local. Voir docs/IDENTITY_BRIDGE.md.
+  passwordHash  String?
   name          String?
+  /// Source d'identité : "local" (email/mot de passe) ou "librechat" (pont SSO).
+  provider      String         @default("local")
+  /// Identifiant stable côté provider externe, ex: "librechat:<mongoId>". Unique.
+  providerUserId String?       @unique
   createdAt     DateTime       @default(now())
   conversations Conversation[]
   resumes       Resume[]

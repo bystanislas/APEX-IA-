@@ -26,7 +26,9 @@ apps/
   web/         modules métier (Next.js + PostgreSQL)
 packages/
   ai/          tiers de modèles + politique de raisonnement (partagé, mappé vers librechat.yaml)
+  auth/        pont d'identité LibreChat ↔ apps/web (vérif JWT HS256)
   documents/   génération de documents (CV aujourd'hui — PDF + DOCX)
+  scripts/     module scripts design (GIMP/Krita) — allowlist pré-auditée, fail-closed
 infra/
   docker/      docker-compose pour la base Postgres de apps/web
 docs/          décisions d'architecture, un fichier par sujet

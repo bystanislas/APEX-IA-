@@ -1,0 +1,44 @@
+{
+  "$comment": "Allowlist de scripts design pré-audités. Un script ABSENT de cette liste NE PEUT PAS être exécuté. Le champ sha256 est le hash du contenu exact audité : le modifier suppose un nouvel audit. Les entrées ci-dessous sont des exemples de structure ; leur sha256 sera renseigné lors de l'audit réel du contenu correspondant (voir docs/SCRIPTS.md).",
+  "version": 1,
+  "scripts": [
+    {
+      "id": "gimp.autocrop-export-web",
+      "name": "Recadrage auto + export web",
+      "description": "Recadre les bords vides d'une image et l'exporte en PNG optimisé web.",
+      "engine": "gimp-script-fu",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "capabilities": {
+        "readInput": true,
+        "writeOutput": true,
+        "network": false,
+        "filesystemBeyondWorkdir": false
+      },
+      "risk": "low",
+      "requiresAdminApproval": false,
+      "audited": { "by": "unaudited", "date": "1970-01-01" },
+      "parameters": [
+        { "name": "quality", "type": "number", "required": false, "min": 1, "max": 100 }
+      ]
+    },
+    {
+      "id": "gimp.batch-resize",
+      "name": "Redimensionnement par lot",
+      "description": "Redimensionne un lot d'images à une largeur cible en conservant le ratio.",
+      "engine": "gimp-python",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "capabilities": {
+        "readInput": true,
+        "writeOutput": true,
+        "network": false,
+        "filesystemBeyondWorkdir": false
+      },
+      "risk": "medium",
+      "requiresAdminApproval": true,
+      "audited": { "by": "unaudited", "date": "1970-01-01" },
+      "parameters": [
+        { "name": "targetWidth", "type": "number", "required": true, "min": 16, "max": 8192 }
+      ]
+    }
+  ]
+}
