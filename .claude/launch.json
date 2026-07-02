@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "apex-ia-web",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@apex-ia/web", "dev"],
+      "port": 3000
+    }
+  ]
+}

@@ -58,6 +58,12 @@ export default function Sidebar({ refreshKey }: { refreshKey: number }) {
         >
           Mes documents (CV)
         </Link>
+        <Link
+          href="/memory"
+          className="block rounded-lg px-3 py-2 text-sm text-neutral-400 hover:bg-neutral-900 hover:text-apex-gold"
+        >
+          Ma mémoire
+        </Link>
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
           className="w-full rounded-lg px-3 py-2 text-left text-sm text-neutral-400 hover:bg-neutral-900"

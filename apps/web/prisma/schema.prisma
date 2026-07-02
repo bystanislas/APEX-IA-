@@ -21,6 +21,7 @@ model User {
   createdAt     DateTime       @default(now())
   conversations Conversation[]
   resumes       Resume[]
+  memories      Memory[]
 }
 
 model Conversation {
@@ -57,4 +58,25 @@ model Resume {
   locale    String   @default("fr")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+/// Mémoire personnelle : préférences que l'IA retient (prénom, langue, style,
+/// habitudes, objectifs...). L'utilisateur peut voir, modifier, supprimer,
+/// désactiver (enabled=false, gardé mais non injecté au contexte) et exporter.
+/// Voir docs/MEMORY.md.
+model Memory {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Catégorie : prenom, langue, style, habitudes, objectifs, projets, interets, besoins, general.
+  category  String   @default("general")
+  /// Clé lisible (ex: "Prénom", "Langue préférée").
+  label     String
+  value     String
+  /// Désactivée = conservée mais non fournie à l'IA.
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
 }
